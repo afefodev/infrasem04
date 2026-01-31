@@ -1,0 +1,28 @@
+jenkins:
+  systemMessage: "Jenkins configuracion inicial con Agentes Docker"
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: admin
+          password: admin
+  clouds:
+    - docker:
+        name: "docker-cloud"
+        dockerApi:
+          dockerHost:
+            uri: "unix:///var/run/docker.sock"
+        exposeDockerHost: true
+        templates:
+          - labelString: "docker-agent"
+            name: "docker-agent"
+            dockerTemplateBase:
+              image: "jenkins/agent:jdk21"
+              environmentsString: |
+                PATH=/bin:/usr/bin
+            remoteFs: "/home/jenkins/agent"
+            connector:
+              attach:
+                user: "jenkins"
+            instanceCapStr: "10"
+            mode: EXCLUSIVE 

@@ -4,8 +4,13 @@ set -e
 
 PLUGINS_FILE="$1"
 
-echo "Instalando pluggins"
+echo "Instalando plugins desde $PLUGINS_FILE"
 
-jenkins-plugin-cli --plugin-file "$PLUGINS_F
+if [ -f "$PLUGINS_FILE" ]; then
+    jenkins-plugin-cli --plugin-file "$PLUGINS_FILE"
+else
+    echo "Archivo de plugins no encontrado: $PLUGINS_FILE"
+    exit 1
+fi
 
 echo "Finalizado"

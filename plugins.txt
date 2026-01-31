@@ -1,9 +1,9 @@
 configuration-as-code
-configuration-as-code-suport
+configuration-as-code-support
 
 git
 workflow-aggregator
-credentials-biding
+credentials-binding
 ssh-agent
 
 docker-workflow
